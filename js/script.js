@@ -1,7 +1,7 @@
 var active = false;
 var which_active = null;
 function generateFields() {
-    const field_parts = document.getElementsByTagName("field-parts")[0]; const array = []
+    const field_parts = document.getElementsByTagName("field-parts")[0];
     for (let i = 0; i < 25; i++) {
         let temp = document.createElement("field-part")
         temp.classList.add("grass");
@@ -18,16 +18,21 @@ function attachToolEvent() {
     for (let i of tool) {
         i.addEventListener("click", (e) => {
             let target = e.target;
-            if (active == false) {
+            if (!target.classList.contains("active")) {
                 which_active = target;
                 console.log("active");
-                active = true;
+                //active = true;
                 target.classList.toggle("active");
+                for (let j of tool) {
+                    if (j != target && j.classList.contains("active")) {
+                        j.classList.remove("active");
+                    }
+                }
             }
             //activated ? if so remove
             else if (target.classList.contains("active")) {
                 target.classList.remove("active");
-                active = false;
+                //active = false;
                 console.log("removed");
                 which_active = null;
             }
@@ -81,9 +86,9 @@ function grow() {
         let seed = parseInt(field.children[i].dataset.seed);
         console.log("seed ", seed);
         if (seed != 0 && seed < 7) {
-            let proba = 5/100;
+            let proba = 5 / 100;
             if (field.children[i].classList.contains("hydrated")) {
-                proba = 30/100;
+                proba = 30 / 100;
             }
             (Math.random() >= proba) ? seed += 1 : seed == seed;
         }
