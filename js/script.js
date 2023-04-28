@@ -1,4 +1,4 @@
-var active = false;
+//var active = false;
 var which_active = null;
 function generateFields() {
     const field_parts = document.getElementsByTagName("field-parts")[0];
@@ -20,6 +20,9 @@ function attachToolEvent() {
             let target = e.target;
             if (!target.classList.contains("active")) {
                 which_active = target;
+                console.log("image ", window.getComputedStyle(target).backgroundImage)
+                //document.querySelector("body").style.cursor = window.getComputedStyle(target).backgroundImage + "92 92,auto";
+                //console.log(" cursor ", document.querySelector("body").style.cursor);
                 console.log("active");
                 //active = true;
                 target.classList.toggle("active");
@@ -90,7 +93,7 @@ function grow() {
             if (field.children[i].classList.contains("hydrated")) {
                 proba = 30 / 100;
             }
-            (Math.random() >= proba) ? seed += 1 : seed == seed;
+            (Math.random() <= proba) ? seed += 1 : seed == seed;
         }
 
 

@@ -18,6 +18,7 @@ body {
     background-image: url(../img/background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    cursor: auto;
 }
 
 body > div {
